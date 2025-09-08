@@ -15,7 +15,7 @@ const categoryPreloader = (status) => {
 
 // load categories
 const loadCategories = () => {
-  categoryPreloader(true);
+  categoryPreloader(true); // preload first
   const url = "https://openapi.programming-hero.com/api/categories";
 
   fetch(url)
