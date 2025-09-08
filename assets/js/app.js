@@ -1,8 +1,21 @@
 // select elements
 const categoryParent = document.getElementById("category__parent");
+const categoryPreloaderGif = document.getElementById("category__preloader");
+
+// category preloader
+const categoryPreloader = (status) => {
+  if (status === true) {
+    categoryPreloaderGif.classList.remove("hidden");
+    categoryParent.classList.add("hidden");
+  } else {
+    categoryParent.classList.remove("hidden");
+    categoryPreloaderGif.classList.add("hidden");
+  }
+};
 
 // load categories
 const loadCategories = () => {
+  categoryPreloader(true);
   const url = "https://openapi.programming-hero.com/api/categories";
 
   fetch(url)
@@ -22,6 +35,7 @@ const displayCategories = (categories) => {
 
     categoryParent.appendChild(categoryDiv);
   });
+  categoryPreloader(false);
 };
 
 loadCategories();
