@@ -2,6 +2,7 @@
 const categoryParent = document.getElementById("category__parent");
 const categoryPreloaderGif = document.getElementById("category__preloader");
 const cardContainer = document.getElementById("card__container");
+const cardPreload = document.getElementById("cardPreload");
 
 // category preloader
 const categoryPreloader = (status) => {
@@ -11,6 +12,17 @@ const categoryPreloader = (status) => {
   } else {
     categoryParent.classList.remove("hidden");
     categoryPreloaderGif.classList.add("hidden");
+  }
+};
+
+// card container preloader
+const cardContainerPreloader = (status) => {
+  if (status === true) {
+    cardPreload.classList.remove("hidden");
+    cardContainer.classList.add("hidden");
+  } else {
+    cardContainer.classList.remove("hidden");
+    cardPreload.classList.add("hidden");
   }
 };
 
@@ -41,6 +53,7 @@ const displayCategories = (categories) => {
 
 // all plants
 const loadPlants = () => {
+  cardContainerPreloader(true);
   const url = "https://openapi.programming-hero.com/api/plants";
 
   fetch(url)
@@ -91,6 +104,7 @@ const displayPlants = (plants) => {
     // append
     cardContainer.appendChild(plantCardDiv);
   });
+  cardContainerPreloader(false);
 };
 
 loadCategories();
