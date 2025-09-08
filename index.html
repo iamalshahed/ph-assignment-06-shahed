@@ -28,10 +28,10 @@
     <!-- connect css -->
     <link rel="stylesheet" href="./assets/css/app.css" />
   </head>
-  <body>
+  <body class="bg-green-50 relative w-full min-h-screen overflow-x-hidden">
     <!-- header -->
     <header class="bg-green-700 text-white shadow-sm py-4">
-      <div class="navbar max-w-[1140px] mx-auto">
+      <div class="navbar max-w-[1440px] mx-auto sm:px-4">
         <div class="navbar-start">
           <div class="dropdown">
             <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
@@ -93,27 +93,63 @@
     </header>
 
     <!-- banner -->
-    <section class="w-full min-h-96 bg-emerald-100 flex items-center justify-center text-center relative z-50">
+    <section
+      class="w-full min-h-96 bg-emerald-100 flex items-center justify-center text-center relative z-50"
+    >
       <!-- image -->
       <div class="hidden lg:flex absolute left-0 -z-50">
-        <img src="./assets/images/hero-leaf1.png" alt="hero">
+        <img src="./assets/images/hero-leaf1.png" alt="hero" />
       </div>
       <div class="hidden lg:flex absolute right-0 -z-50">
-        <img src="./assets/images/hero-leaf2.png" alt="hero">
+        <img src="./assets/images/hero-leaf2.png" alt="hero" />
       </div>
 
       <div class="px-4">
-        <h1 class="mb-2 text-gray-800 text-5xl font-bold">Plant a Tree, Grow a Future</h1>
+        <h1 class="mb-2 text-gray-800 text-5xl font-bold">
+          Plant a Tree, Grow a Future
+        </h1>
         <p class="text-gray-800 text-base font-normal">
           Join our mission to plant 1 million trees and make the Earth greener
           for future generations.
         </p>
 
         <div class="mt-6">
-          <button class="btn px-5 py-3 bg-yellow-400 rounded-full text-green-700 text-balance font-medium">Get Involved</button>
+          <button
+            class="btn px-5 py-3 bg-yellow-400 rounded-full text-green-700 text-balance font-medium"
+          >
+            Get Involved
+          </button>
         </div>
       </div>
     </section>
+
+    <main class="w-full max-w-[1440px] mx-auto px-4">
+      <!-- trees section -->
+      <section class="my-24">
+        <h1 class="text-gray-800 text-3xl font-semibold text-center mb-10">
+          Choose Your Trees
+        </h1>
+
+        <!-- grid section -->
+        <div class="grid grid-cols-12 gap-7">
+          <!-- left -->
+          <div class="left col-span-2 bg-amber-200">
+            <h1 class="text-black text-xl font-semibold mb-4">Categories</h1>
+
+            <!-- category -->
+            <div class="space-y-2">
+              <button class="w-full text-start text-gray-800 text-base font-normal cursor-pointer px-2.5 py-2 rounded transition-all duration-150 hover:bg-green-700 hover:text-white">All Trees</button>
+            </div>
+          </div>
+
+          <!-- center -->
+          <div class="center bg-red-300 col-span-8 text-center">center</div>
+
+          <!-- right -->
+          <div class="right bg-green-300 col-span-2 text-right">right</div>
+        </div>
+      </section>
+    </main>
 
     <!-- connect script file -->
     <script src="./assets/js/app.js"></script>
