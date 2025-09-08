@@ -1,6 +1,7 @@
 // select elements
 const categoryParent = document.getElementById("category__parent");
 const categoryPreloaderGif = document.getElementById("category__preloader");
+const cardContainer = document.getElementById("card__container");
 
 // category preloader
 const categoryPreloader = (status) => {
@@ -38,4 +39,60 @@ const displayCategories = (categories) => {
   categoryPreloader(false);
 };
 
+// all plants
+const loadPlants = () => {
+  const url = "https://openapi.programming-hero.com/api/plants";
+
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => displayPlants(data.plants));
+};
+
+const displayPlants = (plants) => {
+  cardContainer.innerHTML = "";
+
+  plants.forEach((plant) => {
+    const plantCardDiv = document.createElement("div");
+    plantCardDiv.innerHTML = `
+        <div class="p-4 bg-white rounded-lg h-full flex flex-col justify-between">
+            <!-- image -->
+            <div class="">
+                <img class="rounded-lg h-48 w-full object-cover overflow-hidden" src="${plant.image}" alt="">
+            </div>
+            <!-- title & paragraph -->
+            <div class="mt-3 space-y-2">
+                <h2 class="text-gray-800 text-sm font-semibold">${plant.name}</h2>
+                <p class="text-gray-800 text-xs font-normal">
+                ${plant.description}
+                </p>
+            </div>
+
+            <!-- category and price -->
+            <div class="mt-2 flex items-center justify-between">
+                <!-- category -->
+                <div class="px-3 py-1 bg-green-100 rounded-full text-green-700 text-sm font-medium">
+                <span>${plant.category}</span>
+                </div>
+
+                <!-- price -->
+                <div class="text-gray-800 text-sm font-semibold">
+                <p><span>৳</span>${plant.price}</p>
+                </div>
+            </div>
+
+            <!-- button -->
+            <div class="mt-3">
+                <button class="w-full px-5 py-3 bg-green-700 rounded-full text-white text-base font-medium cursor-pointer transition duration-75 hover:bg-green-600">Add to Cart</button>
+            </div>
+
+        </div>
+    `;
+
+    // append
+    cardContainer.appendChild(plantCardDiv);
+  });
+};
+
 loadCategories();
+
+loadPlants();
