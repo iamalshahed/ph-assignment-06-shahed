@@ -19,13 +19,76 @@
     />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
+    <!-- remix icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css"
+    />
+
     <!-- connect css -->
     <link rel="stylesheet" href="./assets/css/app.css" />
   </head>
   <body>
-    <h1 class="text-center p-4 text-4xl bg-black text-white">
-      Hello World!
-    </h1>
+    <!-- header -->
+    <header class="bg-green-700 text-white shadow-sm py-4">
+      <div class="navbar max-w-[1140px] mx-auto">
+        <div class="navbar-start">
+          <div class="dropdown">
+            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            </div>
+            <ul
+              tabindex="0"
+              class="menu menu-sm dropdown-content bg-green-700 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            >
+              <li>
+                <a href="#">About</a>
+              </li>
+              <li>
+                <a href="#">Gallery</a>
+              </li>
+              <li>
+                <a href="#">Plant a Tree</a>
+              </li>
+            </ul>
+          </div>
+          <a href="/" class="font-semibold text-xl">Green Earth</a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+          <ul class="menu menu-horizontal px-1">
+            <li>
+              <a href="#">About</a>
+            </li>
+            <li>
+              <a href="#">Gallery</a>
+            </li>
+            <li>
+              <a href="#">Plant a Tree</a>
+            </li>
+          </ul>
+        </div>
+        <div class="navbar-end">
+          <button
+            class="btn px-5 py-3 bg-yellow-400 rounded-full text-green-700 text-base font-medium border-none"
+          >
+            Plant a Tree
+          </button>
+        </div>
+      </div>
+    </header>
 
     <!-- connect script file -->
     <script src="./assets/js/app.js"></script>
