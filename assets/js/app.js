@@ -235,6 +235,14 @@ const displayPlants = (plants) => {
 // add to cart
 let cart = [];
 const addToCart = (id, name, price) => {
+  const confirmAdd = confirm(
+    `Do you want to add "${name}" ($${price}) to your cart?`
+  );
+
+  if (!confirmAdd) {
+    return;
+  }
+
   const existingItem = cart.find((item) => item.id === id);
 
   if (existingItem) {
