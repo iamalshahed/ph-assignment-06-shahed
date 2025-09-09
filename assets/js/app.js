@@ -125,7 +125,12 @@ const loadPlants = () => {
 
   fetch(url)
     .then((res) => res.json())
-    .then((data) => displayPlants(data.plants));
+    .then((data) => {
+      removeActiveClassFormBtn();
+      const activeBtnHtml = document.getElementById("allBtn");
+      activeBtnHtml.classList.add("btn__active");
+      displayPlants(data.plants);
+    });
 };
 
 const displayPlants = (plants) => {
