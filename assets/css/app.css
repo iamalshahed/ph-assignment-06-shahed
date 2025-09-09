@@ -9,3 +9,9 @@
 body {
   font-family: "Inter", sans-serif;
 }
+
+.btn__active{
+  background: #15803d;
+  color: #fff;
+  font-weight: 600;
+}

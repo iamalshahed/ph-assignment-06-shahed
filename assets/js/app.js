@@ -26,6 +26,11 @@ const cardContainerPreloader = (status) => {
   }
 };
 
+const removeActiveClassFormBtn = () => {
+  const categoryBtns = document.querySelectorAll(".category_btn");
+  categoryBtns.forEach((btn) => btn.classList.remove("btn__active"));
+};
+
 // loadCategoryPlants
 const loadCategoryPlants = (id) => {
   cardContainerPreloader(true);
@@ -34,6 +39,9 @@ const loadCategoryPlants = (id) => {
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
+      removeActiveClassFormBtn();
+      const clickedCategory = document.getElementById(`btn__category__${id}`);
+      clickedCategory.classList.add("btn__active");
       displayCategoryPlants(data.plants);
     });
 };
@@ -102,7 +110,7 @@ const displayCategories = (categories) => {
     // create element
     const categoryDiv = document.createElement("div");
     categoryDiv.innerHTML = `
-        <button onclick="loadCategoryPlants(${category.id})" class="w-full text-start text-gray-800 text-base font-normal cursor-pointer px-2.5 py-2 rounded transition duration-75 hover:bg-green-700 hover:text-white">${category.category_name}</button>
+        <button id="btn__category__${category.id}" onclick="loadCategoryPlants(${category.id})" class="w-full text-start text-gray-800 text-base font-normal cursor-pointer px-2.5 py-2 rounded transition duration-75 hover:bg-green-700 hover:text-white category_btn">${category.category_name}</button>
     `;
 
     categoryParent.appendChild(categoryDiv);
