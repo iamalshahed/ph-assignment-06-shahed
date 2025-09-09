@@ -146,7 +146,9 @@
 
             <!-- category -->
             <div id="category__parent" class="space-y-2">
-              <button id="allBtn" onclick="loadPlants()"
+              <button
+                id="allBtn"
+                onclick="loadPlants()"
                 class="w-full text-start text-gray-800 text-base font-normal cursor-pointer px-2.5 py-2 rounded transition duration-75 hover:bg-green-700 hover:text-white category_btn"
               >
                 All Trees
@@ -165,13 +167,52 @@
               />
             </div>
             <!-- grid div -->
-            <div id="card__container" class="w-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-7">
+            <div
+              id="card__container"
+              class="w-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-7"
+            >
               <!-- card -->
             </div>
           </div>
 
           <!-- right -->
           <div class="right bg-green-300 lg:col-span-2 text-right">right</div>
+        </div>
+      </section>
+
+      <!-- about -->
+      <section>
+        <h1 class="text-gray-800 text-3xl font-semibold text-center mb-10">
+          About the Campaign
+        </h1>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 sm:items-center gap-7">
+          <!-- image -->
+          <div class="">
+            <img class="w-full" src="./assets/images/about.png" alt="about" />
+          </div>
+
+          <!-- content -->
+          <div class="">
+            <p class="text-gray-800 text-base font-normal mb-5">
+              Green Earth is a global tree plantation initiative dedicated to
+              fighting climate change. Since our start, we’ve planted over
+              500,000 trees worldwide. By joining our campaign, you help restore
+              forests, create habitats for wildlife, and combat global warming.
+            </p>
+
+            <ul class="leading-normal">
+              <li class="text-gray-800 text-base font-normal">
+                Restoration of natural habitats
+              </li>
+              <li class="text-gray-800 text-base font-normal">
+                Improvement of air quality
+              </li>
+              <li class="text-gray-800 text-base font-normal">
+                Support for local communities
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
     </main>
