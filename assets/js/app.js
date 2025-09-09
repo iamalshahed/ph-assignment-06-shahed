@@ -5,6 +5,8 @@ const cardContainer = document.getElementById("card__container");
 const cardPreload = document.getElementById("cardPreload");
 const modalContainer = document.getElementById("modal__container");
 const plantModal = document.getElementById("plant__modal");
+const cartContainer = document.getElementById("cart__container");
+const cartTotal = document.getElementById("cart__total");
 
 // category preloader
 const categoryPreloader = (status) => {
@@ -83,7 +85,7 @@ const displayCategoryPlants = (plants) => {
 
             <!-- button -->
             <div class="mt-3">
-                <button class="w-full px-5 py-3 bg-green-700 rounded-full text-white text-base font-medium cursor-pointer transition duration-75 hover:bg-green-600">Add to Cart</button>
+                <button onclick="addToCart(${plant.id}, '${plant.name}', ${plant.price})" class="w-full px-5 py-3 bg-green-700 rounded-full text-white text-base font-medium cursor-pointer transition duration-75 hover:bg-green-600">Add to Cart</button>
             </div>
 
         </div>
@@ -218,7 +220,7 @@ const displayPlants = (plants) => {
 
             <!-- button -->
             <div class="mt-3">
-                <button class="w-full px-5 py-3 bg-green-700 rounded-full text-white text-base font-medium cursor-pointer transition duration-75 hover:bg-green-600">Add to Cart</button>
+                <button onclick="addToCart(${plant.id}, '${plant.name}', ${plant.price})" class="w-full px-5 py-3 bg-green-700 rounded-full text-white text-base font-medium cursor-pointer transition duration-75 hover:bg-green-600">Add to Cart</button>
             </div>
 
         </div>
@@ -228,6 +230,58 @@ const displayPlants = (plants) => {
     cardContainer.appendChild(plantCardDiv);
   });
   cardContainerPreloader(false);
+};
+
+// add to cart
+let cart = [];
+const addToCart = (id, name, price) => {
+  const existingItem = cart.find((item) => item.id === id);
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push({ id, name, price, quantity: 1 });
+  }
+
+  updateCartUI();
+};
+
+const updateCartUI = () => {
+  cartContainer.innerHTML = "";
+  let total = 0;
+
+  cart.forEach((item) => {
+    total += item.price * item.quantity;
+
+    const div = document.createElement("div");
+    div.classList =
+      "flex items-center justify-between px-3 py-2 bg-green-50 rounded-lg mb-2";
+
+    div.innerHTML = `
+      <div>
+        <h4 class="text-gray-800 text-sm font-semibold mb-1">${item.name}</h4>
+        <p class="text-gray-800 text-base font-normal opacity-50">
+          $${item.price} × ${item.quantity}
+        </p>
+      </div>
+      <div>
+        <span onclick="removeFromCart(${item.id})" class="cursor-pointer text-neutral-400 text-xl">
+          <i class="ri-close-line"></i>
+        </span>
+      </div>
+    `;
+
+    // append
+    cartContainer.appendChild(div);
+  });
+
+  cartTotal.innerText = `$${total}`;
+};
+
+// removecart
+const removeFromCart = (id) => {
+  cart = cart.filter((item) => item.id !== id);
+  updateCartUI();
 };
 
 loadCategories();
