@@ -3,6 +3,8 @@ const categoryParent = document.getElementById("category__parent");
 const categoryPreloaderGif = document.getElementById("category__preloader");
 const cardContainer = document.getElementById("card__container");
 const cardPreload = document.getElementById("cardPreload");
+const modalContainer = document.getElementById("modal__container");
+const plantModal = document.getElementById("plant__modal");
 
 // category preloader
 const categoryPreloader = (status) => {
@@ -60,7 +62,7 @@ const displayCategoryPlants = (plants) => {
             </div>
             <!-- title & paragraph -->
             <div class="mt-3 space-y-2">
-                <h2 class="text-gray-800 text-sm font-semibold">${plant.name}</h2>
+                <h2 onclick="loadPlantDetails(${plant.id})" class="text-gray-800 text-sm font-semibold cursor-pointer">${plant.name}</h2>
                 <p class="text-gray-800 text-xs font-normal">
                 ${plant.description}
                 </p>
@@ -133,6 +135,55 @@ const loadPlants = () => {
     });
 };
 
+// load Plant Details
+const loadPlantDetails = (id) => {
+  const url = `https://openapi.programming-hero.com/api/plant/${id}`;
+
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      displayLoadPlantDetails(data.plants);
+    });
+};
+
+const displayLoadPlantDetails = (plantsDetails) => {
+  modalContainer.innerHTML = `
+    <div class="">
+      <h1 class="text-3xl font-semibold text-zinc-800">${plantsDetails.name}</h1>
+
+      <!-- image -->
+      <div class="my-5 h-56">
+        <img class="h-full w-full object-cover overflow-hidden rounded-lg" src="${plantsDetails.image}" alt="Image">
+      </div>
+
+      <!--  -->
+      <div class="space-y-2">
+        <div class="">
+          <strong>Category:</strong>
+          <span>${plantsDetails.category}</span>
+        </div>
+
+        <div class="flex flex-row gap-2">
+          <strong>Price:</strong>
+          <p>
+            <span>$</span>${plantsDetails.price}
+          </p>
+        </div>
+
+        <div class="">
+          <strong>Description:</strong>
+          <span>
+            ${plantsDetails.description}
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+  `;
+  plantModal.showModal();
+};
+
 const displayPlants = (plants) => {
   cardContainer.innerHTML = "";
 
@@ -146,7 +197,7 @@ const displayPlants = (plants) => {
             </div>
             <!-- title & paragraph -->
             <div class="mt-3 space-y-2">
-                <h2 class="text-gray-800 text-sm font-semibold">${plant.name}</h2>
+                <h2 onclick="loadPlantDetails(${plant.id})" class="text-gray-800 text-sm font-semibold cursor-pointer">${plant.name}</h2>
                 <p class="text-gray-800 text-xs font-normal">
                 ${plant.description}
                 </p>
